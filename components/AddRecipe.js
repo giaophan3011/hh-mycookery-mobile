@@ -30,13 +30,12 @@ export default function AddRecipe() {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.inputGroup}>
         <Text style={styles.title}>Title</Text>
         <TextInput
           style={styles.inputField}
           name="title"
-          style={{ borderColor: "gray", borderWidth: 1 }}
           onChangeText={(inp) => setRecipe({ ...recipe, title: inp })}
           keyboardType="text"
           value={recipe.title}
@@ -55,7 +54,6 @@ export default function AddRecipe() {
         <TextInput
           style={styles.inputField}
           name="shortDescription"
-          style={{ borderColor: "gray", borderWidth: 1 }}
           onChangeText={(inp) => setRecipe({ ...recipe, shortDescription: inp })}
           keyboardType="text"
           value={recipe.shortDescription}
@@ -66,7 +64,6 @@ export default function AddRecipe() {
         <TextInput
           style={styles.inputField}
           name="instruction"
-          style={{ borderColor: "gray", borderWidth: 1 }}
           onChangeText={(inp) => setRecipe({ ...recipe, instruction: inp })}
           keyboardType="text"
           value={recipe.instruction}
@@ -81,6 +78,7 @@ export default function AddRecipe() {
   );
 }
 const styles = StyleSheet.create({
+  container: { backgroundColor: "#F2EAED", flex: 1 },
   inputGroup: {
     padding: 10,
   },
@@ -100,5 +98,9 @@ const styles = StyleSheet.create({
   inputField: {
     padding: 5,
     marginBottom: 5,
+    backgroundColor: "white",
+    borderColor: "pink",
+    borderStyle: "dotted",
+    borderWidth: 1,
   },
 });
