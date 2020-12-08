@@ -1,0 +1,12 @@
+{
+  "name": "mycookery",
+  "displayName": "mycookery",
+  "expo": {
+    "name": "mycookery",
+    "slug": "mycookery",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
