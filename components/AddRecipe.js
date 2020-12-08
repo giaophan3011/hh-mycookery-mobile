@@ -1,33 +1,22 @@
+import { Picker } from "@react-native-picker/picker";
 import React from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { useDispatch } from "react-redux";
+import { initAddRecipe } from "../redux/store";
 
-const categories = [
-  {
-    value: "soup",
-  },
-  {
-    value: "appetizer",
-  },
-  {
-    value: "salads",
-  },
-  {
-    value: "bread",
-  },
-  {
-    value: "drink",
-  },
-  {
-    value: "dessert",
-  },
-  {
-    value: "side_dish",
-  },
-  {
-    value: "main_dish",
-  },
+export const categories = [
+  "soup",
+  "appetizer",
+  "salads",
+  "bread",
+  "drink",
+  "dessert",
+  "side_dish",
+  "main_dish",
 ];
+
 export default function AddRecipe() {
+  const dispatch = useDispatch();
   const [recipe, setRecipe] = React.useState({
     title: "",
     instruction: "",
@@ -36,53 +25,80 @@ export default function AddRecipe() {
     ingredients: [],
   });
 
+  const saveNewRecipe = () => {
+    dispatch(initAddRecipe(recipe));
+  };
+
   return (
     <View>
-      <Text>Title</Text>
-      <TextInput
-        name="title"
-        style={{ borderColor: "gray", borderWidth: 1 }}
-        onChangeText={(inp) => setRecipe({ ...recipe, title: inp })}
-        keyboardType="text"
-        value={recipe.title}
-      />
-      <Text>Category</Text>
-
-      <Text>Short description</Text>
-      <TextInput
-        name="shortDescription"
-        style={{ borderColor: "gray", borderWidth: 1 }}
-        onChangeText={(inp) => setRecipe({ ...recipe, shortDescription: inp })}
-        keyboardType="text"
-        value={recipe.shortDescription}
-      />
-      <Text>Instruction</Text>
-      <TextInput
-        name="instruction"
-        style={{ borderColor: "gray", borderWidth: 1 }}
-        onChangeText={(inp) => setRecipe({ ...recipe, instruction: inp })}
-        keyboardType="text"
-        value={recipe.instruction}
-      />
+      <View style={styles.inputGroup}>
+        <Text style={styles.title}>Title</Text>
+        <TextInput
+          style={styles.inputField}
+          name="title"
+          style={{ borderColor: "gray", borderWidth: 1 }}
+          onChangeText={(inp) => setRecipe({ ...recipe, title: inp })}
+          keyboardType="text"
+          value={recipe.title}
+        />
+        <Text style={styles.title}>Category</Text>
+        <Picker
+          selectedValue={recipe.category}
+          style={{ height: 50, width: 100 }}
+          onValueChange={(itemValue, itemIndex) => setRecipe({ ...recipe, category: itemValue })}
+        >
+          {categories.map((type) => (
+            <Picker.Item label={type} value={type} />
+          ))}
+        </Picker>
+        <Text style={styles.title}>Short description</Text>
+        <TextInput
+          style={styles.inputField}
+          name="shortDescription"
+          style={{ borderColor: "gray", borderWidth: 1 }}
+          onChangeText={(inp) => setRecipe({ ...recipe, shortDescription: inp })}
+          keyboardType="text"
+          value={recipe.shortDescription}
+          multiline
+          numberOfLines="2"
+        />
+        <Text style={styles.title}>Instruction</Text>
+        <TextInput
+          style={styles.inputField}
+          name="instruction"
+          style={{ borderColor: "gray", borderWidth: 1 }}
+          onChangeText={(inp) => setRecipe({ ...recipe, instruction: inp })}
+          keyboardType="text"
+          value={recipe.instruction}
+          multiline
+          numberOfLines="10"
+        />
+      </View>
+      <View style={styles.buttonGroup}>
+        <Button style={styles.button} onPress={saveNewRecipe} title="Save" />
+      </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: "#F0FFFF",
+  inputGroup: {
+    padding: 10,
   },
-  appTitle: {
-    flex: 1,
-    alignItems: "flex-start",
-    marginLeft: 20,
+  buttonGroup: {
+    alignItems: "center",
+
+    justifyContent: "center",
+    padding: 10,
+  },
+  button: {
+    width: 100,
+    float: "center",
   },
   title: {
-    fontSize: 24,
     fontWeight: "bold",
   },
-  actionTools: {
-    flex: 1,
-    alignItems: "flex-end",
+  inputField: {
+    padding: 5,
+    marginBottom: 5,
   },
 });

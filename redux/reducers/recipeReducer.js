@@ -18,7 +18,18 @@ const recipeReducer = (
         recipes: action.payload,
         loading: false,
       };
-    case "GET_RECIPES_ERROR_ACTION":
+    case "ADD_RECIPE_ACTION":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "ADD_RECIPE_SUCCESS_ACTION":
+      return {
+        ...state,
+        loading: false,
+        recipes: state.recipes.concat([action.payload]),
+      };
+    case "RECIPE_API_ERROR_ACTION":
       return {
         ...state,
         errorMessage: action.payload,
