@@ -3,6 +3,7 @@ import React from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { initAddRecipe } from "../redux/store";
+import ImageComponent from "./ImageComponent";
 
 export const categories = [
   "soup",
@@ -71,8 +72,9 @@ export default function AddRecipe() {
           numberOfLines="10"
         />
       </View>
+      <ImageComponent styles={styles.imageComponent} />
       <View style={styles.buttonGroup}>
-        <Button style={styles.button} onPress={saveNewRecipe} title="Save" />
+        <Button style={styles.button} onPress={saveNewRecipe} title="Save recipe" color="#B21553" />
       </View>
     </View>
   );
@@ -83,17 +85,20 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   buttonGroup: {
-    alignItems: "center",
-
-    justifyContent: "center",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
     padding: 10,
   },
   button: {
     width: 100,
-    float: "center",
+    float: "right",
   },
   title: {
     fontWeight: "bold",
+  },
+  imageComponent: {
+    width: "100%",
+    float: "left",
   },
   inputField: {
     padding: 5,
