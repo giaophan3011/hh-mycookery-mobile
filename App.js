@@ -40,12 +40,12 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="My"
-            component={HomeScreen}
+            name="Setting"
+            component={AddRecipe}
             options={{
-              tabBarLabel: "New recipe",
+              tabBarLabel: "Setting",
               tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="plus" color={color} size={26} />
+                <MaterialCommunityIcons name="settings" color={color} size={26} />
               ),
             }}
           />

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, Text, View, FlatList, Image } from "react-native";
 import { initGetRecipes } from "../redux/store";
 import salad from "../assets/images/salad.jpg";
-import soup from "../assets/images/soup.webp";
+import soup from "../assets/images/soup.jpg";
 import appetizer from "../assets/images/appetizer.jpg";
 import bread from "../assets/images/bread.jpg";
 import drink from "../assets/images/drinks.jpg";
@@ -20,6 +20,7 @@ export default function RecipeList(props) {
       <FlatList
         nestedScrollEnabled={true}
         data={recipes}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <ListItem item={item} />}
       />
     </View>

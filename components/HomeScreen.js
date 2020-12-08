@@ -9,7 +9,9 @@ export default function HomeScreen() {
   const recipeState = useSelector((state) => state.recipeReducer);
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(initGetRecipes()), []);
+  useEffect(() => {
+    dispatch(initGetRecipes());
+  }, []);
   console.log(recipeState.recipes);
 
   const categories = [
