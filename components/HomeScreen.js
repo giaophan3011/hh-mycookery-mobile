@@ -66,14 +66,18 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.root}>
-      {recipeState.loading ? <Text>Loading</Text> : <CategoryList categories={categories} />}
+      {recipeState.loading ? (
+        <Text>Loading</Text>
+      ) : (
+        <CategoryList categories={categories} style={styles.categoryList} />
+      )}
     </View>
   );
 }
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: "#F0FFFF",
+    backgroundColor: "#F2EAED",
   },
   appTitle: {
     flex: 1,
@@ -87,5 +91,8 @@ const styles = StyleSheet.create({
   actionTools: {
     flex: 1,
     alignItems: "flex-end",
+  },
+  categoryList: {
+    backgroundColor: "pink",
   },
 });

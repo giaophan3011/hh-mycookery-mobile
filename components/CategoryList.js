@@ -12,7 +12,15 @@ const CategoryList = (props) => {
 
   const renderScene = SceneMap(Object.assign(...categories.map((c) => ({ [c.key]: c.scene }))));
 
-  const renderTabBar = (props) => <TabBar {...props} scrollEnabled tabStyle={styles.tabStyle} />;
+  const renderTabBar = (props) => (
+    <TabBar
+      {...props}
+      scrollEnabled
+      tabStyle={styles.tabStyle}
+      activeColor="#53112B"
+      inactiveColor="#53112B"
+    />
+  );
 
   return (
     <TabView
@@ -22,7 +30,7 @@ const CategoryList = (props) => {
       onIndexChange={setIndex}
       initialLayout={initialLayout}
       scrollEnabled
-      tabStyle={{ width: 100 }}
+      tabStyle={{ width: 100, backgroundColor: "#F7EDF1", color: "#53112B" }}
     />
   );
 };
@@ -30,6 +38,8 @@ const CategoryList = (props) => {
 const styles = StyleSheet.create({
   tabStyle: {
     width: 100,
+    color: "#53112B",
+    backgroundColor: "#F7F2F4",
   },
 });
 
