@@ -1,6 +1,6 @@
 import { Picker } from "@react-native-picker/picker";
 import React from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View, ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
 import { initAddRecipe } from "../redux/store";
 import ImageComponent from "./ImageComponent";
@@ -31,14 +31,13 @@ export default function AddRecipe() {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.inputGroup}>
         <Text style={styles.title}>Title</Text>
         <TextInput
           style={styles.inputField}
           name="title"
           onChangeText={(inp) => setRecipe({ ...recipe, title: inp })}
-          keyboardType="text"
           value={recipe.title}
         />
         <Text style={styles.title}>Category</Text>
@@ -48,7 +47,7 @@ export default function AddRecipe() {
           onValueChange={(itemValue, itemIndex) => setRecipe({ ...recipe, category: itemValue })}
         >
           {categories.map((type) => (
-            <Picker.Item label={type} value={type} />
+            <Picker.Item key={type} label={type} value={type} />
           ))}
         </Picker>
         <Text style={styles.title}>Short description</Text>
@@ -56,27 +55,27 @@ export default function AddRecipe() {
           style={styles.inputField}
           name="shortDescription"
           onChangeText={(inp) => setRecipe({ ...recipe, shortDescription: inp })}
-          keyboardType="text"
           value={recipe.shortDescription}
           multiline
-          numberOfLines="2"
+          numberOfLines={2}
+          textAlignVertical="top"
         />
         <Text style={styles.title}>Instruction</Text>
         <TextInput
           style={styles.inputField}
           name="instruction"
           onChangeText={(inp) => setRecipe({ ...recipe, instruction: inp })}
-          keyboardType="text"
           value={recipe.instruction}
           multiline
-          numberOfLines="10"
+          numberOfLines={10}
+          textAlignVertical="top"
         />
       </View>
       <ImageComponent styles={styles.imageComponent} />
       <View style={styles.buttonGroup}>
         <Button style={styles.button} onPress={saveNewRecipe} title="Save recipe" color="#B21553" />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
@@ -85,20 +84,18 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   buttonGroup: {
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
+    // alignItems: "flex-start",
+    // justifyContent: "flex-start",
     padding: 10,
   },
   button: {
     width: 100,
-    float: "right",
   },
   title: {
     fontWeight: "bold",
   },
   imageComponent: {
     width: "100%",
-    float: "left",
   },
   inputField: {
     padding: 5,

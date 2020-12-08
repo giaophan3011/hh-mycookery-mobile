@@ -34,15 +34,10 @@ export default function ImageComponent() {
 
   return (
     <View>
-      <View style={{ width: "20%", margin: 10, alignItems: "left" }}>
-        <Button
-          title="Pick an image from camera roll"
-          onPress={pickImage}
-          color="#67394B"
-          width="200"
-        />
+      <View style={{ margin: 10, alignItems: "center" }}>
+        <Button title="+ Images" onPress={pickImage} color="#67394B" width="200" />
       </View>
-      <View style={{ margin: 10, alignItems: "left" }}>
+      <View style={{ margin: 10, alignItems: "center" }}>
         {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
       </View>
     </View>

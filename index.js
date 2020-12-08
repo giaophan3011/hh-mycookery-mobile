@@ -1,11 +1,14 @@
-import store from "./redux/store";
+import React from "react";
+import { registerRootComponent } from "expo";
 import { Provider } from "react-redux";
 import App from "./App";
-import ReactDOM from "react-dom";
-import React, { useEffect } from "react";
-ReactDOM.render(
+import { name as appName } from "./app.json";
+import store from "./redux/store";
+
+const AppProvider = () => (
   <Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById("root")
+  </Provider>
 );
+
+registerRootComponent(AppProvider);

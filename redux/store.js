@@ -31,14 +31,3 @@ export function initAddRecipe(newRecipe) {
       .catch((err) => dispatch(recipeApiErrorAction(err)));
   };
 }
-
-export function addCustomerMiddleware(newCustomer) {
-  return function (dispatch) {
-    return addCustomer(newCustomer)
-      .then((data) => {
-        dispatch(addCustomerAction(data));
-        dispatch(displaySuccessSnackbar("New customer added!"));
-      })
-      .catch((err) => displayErrorSnackbar(err));
-  };
-}

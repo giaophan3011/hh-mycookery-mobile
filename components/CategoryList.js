@@ -17,8 +17,9 @@ const CategoryList = (props) => {
       {...props}
       scrollEnabled
       tabStyle={styles.tabStyle}
-      activeColor="#53112B"
+      activeColor="#B2151C"
       inactiveColor="#53112B"
+      indicatorStyle={styles.indicatorStyle}
     />
   );
 
@@ -40,6 +41,9 @@ const styles = StyleSheet.create({
     width: 100,
     color: "#53112B",
     backgroundColor: "#F7F2F4",
+  },
+  indicatorStyle: {
+    backgroundColor: "#B2151C",
   },
 });
 

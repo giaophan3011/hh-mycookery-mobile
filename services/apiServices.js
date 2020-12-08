@@ -1,4 +1,4 @@
-const backend = "http://localhost:5000";
+const backend = "http://192.168.10.61:5000";
 
 export async function getRecipes() {
   return await fetch(`${backend}/public/v1/recipes`).then((response) => response.json());

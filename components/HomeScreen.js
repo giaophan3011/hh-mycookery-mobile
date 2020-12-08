@@ -23,7 +23,7 @@ export default function HomeScreen() {
       ),
     },
     {
-      key: "Appetizers",
+      key: "Starters",
       scene: () => (
         <RecipeList recipes={recipeState.recipes.filter((item) => item.category === "appetizer")} />
       ),
