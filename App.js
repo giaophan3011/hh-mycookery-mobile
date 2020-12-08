@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 import Appbar from "./components/Appbar";
 import HomeScreen from "./components/HomeScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
