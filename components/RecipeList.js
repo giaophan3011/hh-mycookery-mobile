@@ -11,22 +11,17 @@ import dessert from "../assets/images/dessert.jpg";
 import sideDish from "../assets/images/side_dish.jpg";
 import mainDish from "../assets/images/main_dish.jpg";
 
-export default function RecipeList() {
-  const recipeState = useSelector((state) => state.recipeReducer);
-  const dispatch = useDispatch();
-  useEffect(() => dispatch(initGetRecipes()), []);
-  console.log(recipeState.recipes);
-  return (
+export default function RecipeList(props) {
+  let recipes = props.recipes;
+  return recipes === null || recipes.isEmpty ? (
+    <Text style={{ alignContent: "center" }}>No recipe</Text>
+  ) : (
     <View style={styles.scrollableList}>
-      {recipeState.recipes.isEmpty ? (
-        <Text>No recipe</Text>
-      ) : (
-        <FlatList
-          nestedScrollEnabled={true}
-          data={recipeState.recipes}
-          renderItem={({ item }) => <ListItem item={item} />}
-        />
-      )}
+      <FlatList
+        nestedScrollEnabled={true}
+        data={recipes}
+        renderItem={({ item }) => <ListItem item={item} />}
+      />
     </View>
   );
 }
@@ -82,7 +77,6 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "50%",
-    resizeMode: "contain",
   },
 
   textContainer: {

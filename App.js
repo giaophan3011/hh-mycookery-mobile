@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 import Appbar from "./components/Appbar";
 import HomeScreen from "./components/HomeScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import AddRecipe from "./components/AddRecipe";
 
 const Tab = createBottomTabNavigator();
 
@@ -29,12 +30,22 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Details"
+            name="New"
+            component={AddRecipe}
+            options={{
+              tabBarLabel: "New recipe",
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="plus" color={color} size={26} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="My"
             component={HomeScreen}
             options={{
-              tabBarLabel: "Favorites",
+              tabBarLabel: "New recipe",
               tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="heart" color={color} size={26} />
+                <MaterialCommunityIcons name="plus" color={color} size={26} />
               ),
             }}
           />
