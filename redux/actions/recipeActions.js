@@ -17,3 +17,7 @@ export const addRecipeAction = () => {
 export const addRecipeSuccessAction = (recipe) => {
   return { type: "ADD_RECIPE_SUCCESS_ACTION", payload: recipe };
 };
+
+export const dismissSnackbarAction = () => {
+  return { type: "DISMISS_SNACKBAR_ACTION" };
+};

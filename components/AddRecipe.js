@@ -1,9 +1,11 @@
 import { Picker } from "@react-native-picker/picker";
 import React from "react";
 import { Button, StyleSheet, Text, TextInput, View, ScrollView } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { initAddRecipe } from "../redux/store";
 import ImageComponent from "./ImageComponent";
+import { Snackbar } from "react-native-paper";
+import { dismissSnackbarAction } from "../redux/actions/recipeActions";
 
 export const categories = [
   "soup",
@@ -18,6 +20,7 @@ export const categories = [
 
 export default function AddRecipe() {
   const dispatch = useDispatch();
+  const recipeState = useSelector((state) => state.recipeReducer);
   const [recipe, setRecipe] = React.useState({
     title: "",
     instruction: "",
@@ -25,6 +28,10 @@ export default function AddRecipe() {
     shortDescription: "",
     ingredients: [],
   });
+
+  const onDismissSnackBar = () => {
+    dispatch(dismissSnackbarAction());
+  };
 
   const saveNewRecipe = () => {
     dispatch(initAddRecipe(recipe));
@@ -75,6 +82,19 @@ export default function AddRecipe() {
       <View style={styles.buttonGroup}>
         <Button style={styles.button} onPress={saveNewRecipe} title="Save recipe" color="#B21553" />
       </View>
+      <Snackbar
+        style={{ justifyContent: "flex-end" }}
+        visible={recipeState.notificationMessage !== null}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: "Close",
+          onPress: () => {
+            onDismissSnackBar();
+          },
+        }}
+      >
+        {recipeState.notificationMessage === null ? " " : recipeState.notificationMessage}
+      </Snackbar>
     </ScrollView>
   );
 }

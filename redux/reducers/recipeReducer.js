@@ -1,8 +1,9 @@
 const recipeReducer = (
   state = {
     recipes: [],
-    loading: false,
+    loading: true,
     errorMessage: "",
+    notificationMessage: null,
   },
   action
 ) => {
@@ -28,12 +29,20 @@ const recipeReducer = (
         ...state,
         loading: false,
         recipes: state.recipes.concat([action.payload]),
+        notificationMessage: "Recipe added!",
       };
     case "RECIPE_API_ERROR_ACTION":
       return {
         ...state,
         errorMessage: action.payload,
         loading: false,
+        notificationMessage: action.payload,
+      };
+    case "DISMISS_SNACKBAR_ACTION":
+      return {
+        ...state,
+        loading: false,
+        notificationMessage: null,
       };
     default:
       return state;

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { initGetRecipes } from "../redux/store";
 import CategoryList from "./CategoryList";
@@ -69,7 +69,9 @@ export default function HomeScreen() {
   return (
     <View style={styles.root}>
       {recipeState.loading ? (
-        <Text>Loading</Text>
+        <View style={styles.busyContainer}>
+          <ActivityIndicator size="large" />
+        </View>
       ) : (
         <CategoryList categories={categories} style={styles.categoryList} />
       )}
@@ -80,6 +82,10 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: "#F2EAED",
+  },
+  busyContainer: {
+    flex: 1,
+    justifyContent: "center",
   },
   appTitle: {
     flex: 1,
