@@ -7,6 +7,7 @@ import HomeScreen from "./components/HomeScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AddRecipe from "./components/AddRecipe";
 import SettingScreen from "./components/SettingScreen";
+import { getTranslatedText } from "./components/Translation";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,20 +22,20 @@ export default function App() {
           barStyle={{ backgroundColor: "#694fad" }}
         >
           <Tab.Screen
-            name="Home"
+            name={getTranslatedText("home")}
             component={HomeScreen}
             options={{
-              tabBarLabel: "Home",
+              tabBarLabel: getTranslatedText("home"),
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="home" color={color} size={26} />
               ),
             }}
           />
           <Tab.Screen
-            name="New"
+            name={getTranslatedText("newRecipe")}
             component={AddRecipe}
             options={{
-              tabBarLabel: "New recipe",
+              tabBarLabel: getTranslatedText("newRecipe"),
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="plus" color={color} size={26} />
               ),
@@ -44,7 +45,7 @@ export default function App() {
             name="Setting"
             component={SettingScreen}
             options={{
-              tabBarLabel: "Setting",
+              tabBarLabel: getTranslatedText("settings"),
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="settings" color={color} size={26} />
               ),

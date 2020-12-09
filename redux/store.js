@@ -1,15 +1,18 @@
-import { combineReducers } from "redux";
+import * as Localization from "expo-localization";
+import i18n from "i18n-js";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import thunk from "redux-thunk";
 import { getRecipes, postRecipe } from "../services/apiServices";
+import { changeLanguageAction } from "./actions/appActions";
 import {
   addRecipeSuccessAction,
   getRecipesSuccessAction,
   recipeApiErrorAction,
 } from "./actions/recipeActions";
+import appReducer from "./reducers/appReducer";
 import recipeReducer from "./reducers/recipeReducer";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
 
-const rootReducer = combineReducers({ recipeReducer });
+const rootReducer = combineReducers({ recipeReducer, appReducer });
 export default createStore(rootReducer, applyMiddleware(thunk));
 
 export function initGetRecipes() {
@@ -29,5 +32,16 @@ export function initAddRecipe(newRecipe) {
         // dispatch(displaySuccessSnackbar("New customer added!"));
       })
       .catch((err) => dispatch(recipeApiErrorAction(err)));
+  };
+}
+
+export function initChangeLanguage(language) {
+  return function (dispatch) {
+    if (language === "SYSTEM") {
+      i18n.locale = Localization.locale;
+    } else {
+      i18n.locale = language.toLowerCase();
+    }
+    dispatch(changeLanguageAction(language));
   };
 }

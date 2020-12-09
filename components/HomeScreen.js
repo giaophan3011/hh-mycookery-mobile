@@ -70,7 +70,7 @@ export default function HomeScreen() {
     <View style={styles.root}>
       {recipeState.loading ? (
         <View style={styles.busyContainer}>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color="#B2151C" />
         </View>
       ) : (
         <CategoryList categories={categories} style={styles.categoryList} />
