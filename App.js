@@ -6,6 +6,7 @@ import Appbar from "./components/Appbar";
 import HomeScreen from "./components/HomeScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AddRecipe from "./components/AddRecipe";
+import SettingScreen from "./components/SettingScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -41,7 +42,7 @@ export default function App() {
           />
           <Tab.Screen
             name="Setting"
-            component={AddRecipe}
+            component={SettingScreen}
             options={{
               tabBarLabel: "Setting",
               tabBarIcon: ({ color }) => (
